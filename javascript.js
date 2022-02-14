@@ -23,6 +23,7 @@ Book.prototype.logStaticDetails = function() {
 
 function AddBookToLibrary(author, title, pages, read, publishingHouse, rating, year) {
     myLibrary[myLibrary.length] = new Book(author, title, pages, read, publishingHouse, rating, year);
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function DisplayBooksInPage() {
@@ -70,6 +71,7 @@ function ToggleReadStatus(index) {
     else {
         myLibrary[index].read = true;
     }
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     books.innerHTML = "";
     DisplayBooksInPage();
     return;
@@ -93,6 +95,7 @@ function ExpandAddBookSection() {
 
 function DeleteBook(index) {
     myLibrary[index] = null;
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
     books.innerHTML = "";
     DisplayBooksInPage();
     return;
@@ -140,4 +143,11 @@ function AddSampleBooks() {
     return;
 }
 
-AddSampleBooks();
+if (localStorage.getItem("myLibrary") === null) {
+    AddSampleBooks();
+    return;
+}
+else {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    return;
+}
