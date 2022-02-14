@@ -1,0 +1,127 @@
+let myLibrary = [];
+let collapsed = true;
+
+function Book(author, title, pages, read, publishingHouse, rating, year) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
+    this.publishingHouse = publishingHouse;
+    this.rating = rating;
+    this.year = year;
+    if (this.read == true) {
+        this.info = `${title} by ${author}, published in the year ${year} with ${publishingHouse}. Rating: ${rating}. Pages: ${pages}.`;
+    }
+    else {
+        this.info = `${title} by ${author}, published in the year ${year} with ${publishingHouse}. Rating: ${rating}. Pages: ${pages}.`;
+    }
+}
+
+Book.prototype.logStaticDetails = function() {
+    console.log(this.info)
+}
+
+function AddBookToLibrary(author, title, pages, read, publishingHouse, rating, year) {
+    myLibrary[myLibrary.length] = new Book(author, title, pages, read, publishingHouse, rating, year);
+}
+
+function DisplayBooksInPage() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i] == null) {
+            continue;
+        }
+        const books = document.getElementById('books');
+        let book = document.createElement('div');
+        if (myLibrary[i].read === true) {
+            book.innerHTML = "" + myLibrary[i].info + " Already read";
+        }
+        else {
+            book.innerHTML = "" + myLibrary[i].info + " Not read yet";
+        }
+        book.className = 'bookentry';
+        let deleteButton = document.createElement('button');
+        deleteButton.dataset.bookinquestion = `${i}`;
+        deleteButton.setAttribute("onclick", `DeleteBook(${i})`);
+        let t = document.createTextNode("delete this book");
+        deleteButton.appendChild(t);
+        let toggleReadButton = document.createElement('button');
+        toggleReadButton.dataset.bookinquestion = `${i}`;
+        toggleReadButton.setAttribute("onclick", `ToggleReadStatus(${i})`);
+        let t2 = undefined;
+        if (myLibrary[i].read === true) {
+            t2 = document.createTextNode("mark unread");
+        }
+        else if (myLibrary[i].read === false) {
+            t2 = document.createTextNode("mark read");
+        }
+        toggleReadButton.appendChild(t2);
+        book.appendChild(document.createElement('br'));
+        book.appendChild(deleteButton);
+        book.appendChild(toggleReadButton);
+        books.appendChild(book);
+    }
+    return;
+}
+
+function ToggleReadStatus(index) {
+    if (myLibrary[index].read === true) {
+        myLibrary[index].read = false;   
+    }
+    else {
+        myLibrary[index].read = true;
+    }
+    books.innerHTML = "";
+    DisplayBooksInPage();
+    return;
+}
+
+function ExpandAddBookSection() {
+    let form = document.getElementById('adddetails');
+    let button = document.getElementById('expandbutton');
+    if (collapsed === true) {
+        form.classList.remove('invisible');
+        button.innerHTML = "Collapse";
+        collapsed = false;
+    }
+    else {
+        form.classList.add('invisible');
+        button.innerHTML = "New Book";
+        collapsed = true;
+    }
+    return;
+}
+
+function DeleteBook(index) {
+    myLibrary[index] = null;
+    books.innerHTML = "";
+    DisplayBooksInPage();
+    return;
+}
+
+for (let i = 0; i < 5; i++) {
+    AddBookToLibrary('zé das couves', 'maria foi à praia', '20', false, 'editora figueiras', '10', '2004');
+}
+
+DisplayBooksInPage();
+
+const clickBot = document.querySelector("#submit")
+
+clickBot.addEventListener("click",function(){
+    let author = document.getElementById('author').value;
+    let title = document.getElementById('title').value;
+    let pages = document.getElementById('pages').value;
+    let read = document.getElementById('read').value;
+    if (read === 'true') {
+        read = true;
+    }
+    else {
+        read = false;
+    }
+    let publishingHouse = document.getElementById('publishingHouse').value;
+    let rating = document.getElementById('rating').value;
+    let year = document.getElementById('year').value;
+    AddBookToLibrary(author, title, pages, read, publishingHouse, rating, year);
+    const books = document.getElementById('books');
+    books.innerHTML = "";
+    DisplayBooksInPage();
+})
