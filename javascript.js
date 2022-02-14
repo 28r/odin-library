@@ -148,7 +148,7 @@ if (localStorage.getItem("myLibrary") === null) {
     return;
 }
 else {
-    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary")).slice();
     DisplayBooksInPage();
     return;
 }
