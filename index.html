@@ -14,29 +14,29 @@
     </header>
     <div id="addbookarea">
         <button type="button" onclick="ExpandAddBookSection()" id="expandbutton">New Book</button>
-        <form class="invisible" id="adddetails" onsubmit="return false">
+        <div class="invisible" id="adddetails">
             <br>
             <label for="author">Author:</label>
-            <input type="text" id="author" name="author" placeholder="Marcel Proust">
+            <input type="text" id="author" name="author" placeholder="Marcel Proust" required>
             <label for="author">Title:</label>
-            <input type="text" id="title" name="title" placeholder="No caminho de Swann">
+            <input type="text" id="title" name="title" placeholder="No caminho de Swann" required>
             <label for="author">Pages:</label>
-            <input type="text" id="pages" name="pages" placeholder="558">
+            <input type="text" id="pages" name="pages" placeholder="558" required>
             <br>
             <label for="author">Publishing house:</label>
-            <input type="text" id="publishingHouse" name="publishingHouse" placeholder="Editora Globo">
+            <input type="text" id="publishingHouse" name="publishingHouse" placeholder="Editora Globo" required>
             <label for="author">Rating:</label>
-            <input type="text" id="rating" name="rating" placeholder="10">
+            <input type="text" id="rating" name="rating" placeholder="10" required>
             <label for="author">Year:</label>
-            <input type="text" id="year" name="year" placeholder="2016">
+            <input type="text" id="year" name="year" placeholder="2016" required>
             <div>
-                <input type="radio" id="read" name="read" value="true">
+                <input type="radio" id="read" name="read" value="true" checked>
                 <label for="read">Read</label>
                 <input type="radio" id="unread" name="read" value="false">
                 <label for="unread">Unread</label>
             </div>
             <button type="button" id="submit">Submit</button>
-        </form>
+        </div>
     </div>
     <div id="books"></div>
 </body>

@@ -17,14 +17,32 @@ a:visited {
 }
 
 .bookentry {
-    background-color: blueviolet;
+    box-shadow: 
+    2px 0 0 0 blanchedalmond, 
+    0 2px 0 0 blanchedalmond, 
+    2px 2px 0 0 blanchedalmond,   /* Just to fix the corner */
+    2px 0 0 0 blanchedalmond inset, 
+    0 2px 0 0 blanchedalmond inset;
     padding: 1em;
 }
 
 #books {
     padding: 1em;
+    width: 80%;
+    margin: auto;
 }
 
 #adddetails label {
     font-weight: 500;
+}
+
+button {
+    border: 2px solid blanchedalmond;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    background-color: lightpink;
+    border-radius: 10px;
 }

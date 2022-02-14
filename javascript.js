@@ -10,10 +10,10 @@ function Book(author, title, pages, read, publishingHouse, rating, year) {
     this.rating = rating;
     this.year = year;
     if (this.read == true) {
-        this.info = `${title} by ${author}, published in the year ${year} with ${publishingHouse}. Rating: ${rating}. Pages: ${pages}.`;
+        this.info = `${title} by ${author}, published in ${year} with ${publishingHouse}. Rating: ${rating}. Pages: ${pages}.`;
     }
     else {
-        this.info = `${title} by ${author}, published in the year ${year} with ${publishingHouse}. Rating: ${rating}. Pages: ${pages}.`;
+        this.info = `${title} by ${author}, published in ${year} with ${publishingHouse}. Rating: ${rating}. Pages: ${pages}.`;
     }
 }
 
@@ -98,19 +98,19 @@ function DeleteBook(index) {
     return;
 }
 
-for (let i = 0; i < 5; i++) {
-    AddBookToLibrary('zé das couves', 'maria foi à praia', '20', false, 'editora figueiras', '10', '2004');
-}
-
-DisplayBooksInPage();
-
 const clickBot = document.querySelector("#submit")
 
 clickBot.addEventListener("click",function(){
     let author = document.getElementById('author').value;
     let title = document.getElementById('title').value;
     let pages = document.getElementById('pages').value;
-    let read = document.getElementById('read').value;
+    let radiobuttons = document.getElementsByName('read');
+    let read;
+    for (let i = 0; i < radiobuttons.length; i++) {
+        if (radiobuttons[i].checked) {
+            read = radiobuttons[i].value;
+        }
+    }
     if (read === 'true') {
         read = true;
     }
@@ -120,8 +120,24 @@ clickBot.addEventListener("click",function(){
     let publishingHouse = document.getElementById('publishingHouse').value;
     let rating = document.getElementById('rating').value;
     let year = document.getElementById('year').value;
-    AddBookToLibrary(author, title, pages, read, publishingHouse, rating, year);
-    const books = document.getElementById('books');
-    books.innerHTML = "";
-    DisplayBooksInPage();
+    if (author && title && publishingHouse && rating && year && pages) {
+        AddBookToLibrary(author, title, pages, read, publishingHouse, rating, year);
+        const books = document.getElementById('books');
+        books.innerHTML = "";
+        DisplayBooksInPage();
+        return;
+    }
+    else {
+        return 1;
+    }
 })
+
+function AddSampleBooks() {
+    AddBookToLibrary('Marcel Proust', 'O tempo redescoberto', '464', true, 'Editora Globo', '9', '2013');
+    AddBookToLibrary('Liev Tolstói', 'Guerra e Paz', '1544', false, 'Companhia das Letras', '8', '2017');
+    AddBookToLibrary('Larissa Manoela', 'O mundo de Larissa Manoela', '160', false, 'HarperCollins', '10', '2017');
+    DisplayBooksInPage();
+    return;
+}
+
+AddSampleBooks();
