@@ -145,10 +145,8 @@ function AddSampleBooks() {
 
 if (localStorage.getItem("myLibrary") === null) {
     AddSampleBooks();
-    return;
 }
 else {
     myLibrary = JSON.parse(localStorage.getItem("myLibrary")).slice();
     DisplayBooksInPage();
-    return;
 }
