@@ -12,8 +12,6 @@
     <header>
         <h1>Tony's Library</h1>
         <h3>...with localStorage!</h3>
-        <br>
-        <button type="button" onclick="localStorage.clear(); window.location.reload(true);" id="startover">Start Over</button>
     </header>
     <div id="addbookarea">
         <button type="button" onclick="ExpandAddBookSection()" id="expandbutton">New Book</button>
@@ -45,5 +43,6 @@
 </body>
 <footer>
     <p>Coded and styled by <a href="https://github.com/28r" target="_blank" rel="noopener noreferrer">Antônio Moraes</a> &copy; 2022</p>
+    <button type="button" onclick="localStorage.clear(); window.location.reload(true);" id="startover">Start Over</button>
 </footer>
 </html>
