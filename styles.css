@@ -46,3 +46,9 @@ button {
     background-color: lightpink;
     border-radius: 10px;
 }
+
+#expandbutton {
+    width: 90px;
+    height: 30px;
+    border-radius: 20px;
+}
